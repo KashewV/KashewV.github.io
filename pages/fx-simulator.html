@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FX Simulator — Kash Vittala</title>
+  <meta name="description" content="A Monte Carlo FX risk simulator project by Kash Vittala." />
+  <meta name="theme-color" content="#1a202c" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* Using the same Forest & Mint theme */
+    :root {
+      --bg: #1A202C; --text: #F7FAFC; --muted: #A0AEC0; --card: #2D3748; --accent: #4FD1C5;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #F0FFF4; --text: #1A202C; --muted: #4A5568; --card: #FFFFFF; --accent: #2C7A7B;
+      }
+    }
+    html, body { min-height: 100%; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Layout */
+    .container { width: min(800px, 92%); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(160%) blur(6px);
+      background-color: color-mix(in oklab, var(--bg) 80%, transparent);
+      border-bottom: 1px solid color-mix(in oklab, var(--text) 15%, transparent);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .brand { font-weight: 800; letter-spacing: .4px; }
+    main { padding: 60px 0; }
+    
+    /* Article Styles */
+    .project-header h1 { font-size: 42px; margin: 0 0 10px; line-height: 1.1; }
+    .project-header p { font-size: 18px; color: var(--muted); margin-bottom: 30px; }
+    .project-content { font-size: 17px; line-height: 1.7; }
+    .project-content h2 { font-size: 24px; margin-top: 40px; border-bottom: 1px solid color-mix(in oklab, var(--text) 15%, transparent); padding-bottom: 8px; }
+    .project-content img { max-width: 100%; border-radius: 12px; margin-top: 15px; }
+    .back-link { display: inline-block; margin-top: 40px; }
+    
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="../index.html">Kash Vittala</a>
+      <a href="./projects.html">← Back to Projects</a>
+    </div>
+  </header>
+
+  <main>
+    <article class="container">
+      <div class="project-header">
+        <h1>Monte Carlo FX Simulator</h1>
+        <p>A tool for modeling currency risk using correlated random walks, Value at Risk (VaR), and scenario analysis.</p>
+      </div>
+      
+      <div class="project-content">
+        <!-- You can add images, text, and details about your project here -->
+        <img src="https://placehold.co/800x400/2D3748/4FD1C5?text=Simulator+Screenshot" alt="FX Simulator Screenshot">
+        
+        <h2>Project Overview</h2>
+        <p>Description: </p>
+
+        <h2>Key Features</h2>
+        <ul>
+          <li>Simulates correlated paths for multiple currencies.</li>
+          <li>Calculates Value at Risk (VaR) and Expected Tail Loss (ETL).</li>
+          <li>Allows for custom scenario and stress testing.</li>
+        </ul>
+
+        <a class="back-link" href="./projects.html">← Back to All Projects</a>
+      </div>
+    </article>
+  </main>
+
+</body>
+</html>
