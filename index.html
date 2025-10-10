@@ -21,20 +21,20 @@
 
   <style>
     :root {
-      --bg: #0b1020; /* dark slate */
-      --text: #e5e7eb; /* zinc-200 */
-      --muted: #a3a3a3; /* zinc-400 */
-      --card: #0f172a; /* slate-900 */
-      --accent: #60a5fa; /* sky-400 */
+      --bg: #1A202C;       /* Dark Forest Green */
+      --text: #F7FAFC;     /* Off-White */
+      --muted: #A0AEC0;    /* Muted Gray */
+      --card: #2D3748;     /* Darker Card */
+      --accent: #4FD1C5;   /* Mint Green */
       --shadow: 0 10px 30px rgba(0,0,0,.4);
     }
     @media (prefers-color-scheme: light) {
       :root {
-        --bg: #f8fafc;
-        --text: #0f172a;
-        --muted: #475569;
-        --card: #ffffff;
-        --accent: #2563eb;
+        --bg: #F0FFF4;       /* Light Mint */
+        --text: #1A202C;     /* Dark Forest Green */
+        --muted: #4A5568;    /* Dark Gray */
+        --card: #FFFFFF;     /* White */
+        --accent: #2C7A7B;   /* Teal */
         --shadow: 0 10px 30px rgba(0,0,0,.08);
       }
     }
@@ -139,33 +139,56 @@
     const STORAGE_KEY = 'kv-theme';
     const root = document.documentElement;
 
-    function setTheme(mode){
-      if(mode === 'light') {
-        root.style.setProperty('--bg', '#f8fafc');
-        root.style.setProperty('--text', '#0f172a');
-        root.style.setProperty('--muted', '#475569');
-        root.style.setProperty('--card', '#ffffff');
-        root.style.setProperty('--accent', '#2563eb');
-        root.style.setProperty('--shadow', '0 10px 30px rgba(0,0,0,.08)');
-      } else {
-        root.style.setProperty('--bg', '#0b1020');
-        root.style.setProperty('--text', '#e5e7eb');
-        root.style.setProperty('--muted', '#a3a3a3');
-        root.style.setProperty('--card', '#0f172a');
-        root.style.setProperty('--accent', '#60a5fa');
-        root.style.setProperty('--shadow', '0 10px 30px rgba(0,0,0,.4)');
-      }
+function setTheme(mode){
+      // NOTE: This JS logic would need to be updated to match the new CSS variables if you were using JS to set themes.
+      // Since it's all in CSS, we don't need to change this part. The CSS media query handles it.
       localStorage.setItem(STORAGE_KEY, mode);
       themeBtn?.setAttribute('aria-pressed', mode === 'dark');
+
+      // The below is a more robust way to handle JS theme toggling if the CSS approach isn't sufficient
+       const lightTheme = {
+        '--bg': '#F0FFF4',
+        '--text': '#1A202C',
+        '--muted': '#4A5568',
+        '--card': '#FFFFFF',
+        '--accent': '#2C7A7B',
+        '--shadow': '0 10px 30px rgba(0,0,0,.08)',
+      };
+      const darkTheme = {
+        '--bg': '#1A202C',
+        '--text': '#F7FAFC',
+        '--muted': '#A0AEC0',
+        '--card': '#2D3748',
+        '--accent': '#4FD1C5',
+        '--shadow': '0 10px 30px rgba(0,0,0,.4)',
+      };
+      
+      const theme = mode === 'light' ? lightTheme : darkTheme;
+      for (const [prop, value] of Object.entries(theme)) {
+        root.style.setProperty(prop, value);
+      }
     }
 
-    // Init theme from storage or system
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if(saved){ setTheme(saved); }
+   const savedTheme = localStorage.getItem(STORAGE_KEY);
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else {
+      setTheme(prefersDark ? 'dark' : 'light');
+    }
 
     themeBtn?.addEventListener('click', () => {
-      const current = localStorage.getItem(STORAGE_KEY) || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      const current = localStorage.getItem(STORAGE_KEY) || (prefersDark ? 'dark' : 'light');
       setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    // Also listen for system changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        // Only change if no theme is saved in localStorage
+        if (!localStorage.getItem(STORAGE_KEY)) {
+            setTheme(e.matches ? 'dark' : 'light');
+        }
     });
   </script>
 </body>
