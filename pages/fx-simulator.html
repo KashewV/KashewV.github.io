@@ -52,7 +52,12 @@
     .project-content { font-size: 17px; line-height: 1.7; }
     .project-content h2 { font-size: 24px; margin-top: 40px; border-bottom: 1px solid color-mix(in oklab, var(--text) 15%, transparent); padding-bottom: 8px; }
     .project-content img { max-width: 100%; border-radius: 12px; margin-top: 15px; }
+    .project-content ul { padding-left: 20px; }
+    .project-content li { margin-bottom: 8px; }
     .back-link { display: inline-block; margin-top: 40px; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 16px; border-radius: 12px; font-weight: 600; border: 1px solid color-mix(in oklab, var(--text) 15%, transparent); background: var(--card); color: var(--text); }
+    .btn.primary { background: var(--accent); color: var(--bg); border-color: transparent; }
     
   </style>
 </head>
@@ -64,7 +69,7 @@
     </div>
   </header>
 
-  <main>
+  <main>  
     <article class="container">
       <div class="project-header">
         <h1>Monte Carlo FX Simulator</h1>
@@ -72,17 +77,30 @@
       </div>
       
       <div class="project-content">
-        <!-- You can add images, text, and details about your project here -->
-        <img src="https://placehold.co/800x400/2D3748/4FD1C5?text=Simulator+Screenshot" alt="FX Simulator Screenshot">
+        <img src="https://placehold.co/800x450/2D3748/4FD1C5?text=FX+Simulator+UI" alt="FX Simulator Screenshot">
+        <div class="btn-row">
+            <a href="https://github.com/KashewV/montecarlosim/blob/main/streamlit_app.py" class="btn primary" target="_blank" rel="noopener noreferrer">View Live Demo</a> 
+            <a href="https://github.com/KashewV/montecarlosim.git" class="btn" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        </div>
         
         <h2>Project Overview</h2>
-        <p>Description: </p>
+        <p>This simulator models the USD value of future revenues denominated in multiple currencies (EUR and INR). It uses a Geometric Brownian Motion model to forecast correlated FX rate paths, allowing for a comprehensive analysis of potential outcomes. The tool is designed for assessing risk, featuring metrics like Value at Risk (VaR) and Conditional Value at Risk (CVaR). The interactive web application is built with Streamlit, providing an intuitive interface for adjusting parameters and visualizing the results.</p>
 
         <h2>Key Features</h2>
         <ul>
-          <li>Simulates correlated paths for multiple currencies.</li>
-          <li>Calculates Value at Risk (VaR) and Expected Tail Loss (ETL).</li>
-          <li>Allows for custom scenario and stress testing.</li>
+          <li><strong>Correlated Asset Paths:</strong> Simulates EURUSD and INRUSD price paths using a Cholesky decomposition to accurately model market correlations.</li>
+          <li><strong>Flexible Cashflow Modeling:</strong> Allows for seasonal revenue patterns (even, front-loaded, back-loaded) to reflect real-world business cycles.</li>
+          <li><strong>Forward Hedging Strategy:</strong> Users can specify partial forward hedging ratios for each currency to model and assess the impact of risk mitigation strategies.</li>
+          <li><strong>Comprehensive Risk Metrics:</strong> Calculates and displays key risk indicators including 95% VaR, 95% CVaR, and the probability of loss relative to the base case.</li>
+          <li><strong>Interactive Scenario Analysis:</strong> All major inputs, such as spot prices, volatilities, market drift, and interest rates, are fully adjustable through the Streamlit interface.</li>
+        </ul>
+
+        <h2>Technology Stack</h2>
+        <ul>
+            <li><strong>Backend:</strong> Python, NumPy, Pandas</li>
+            <li><strong>Web Framework:</strong> Streamlit</li>
+            <li><strong>Plotting:</strong> Altair, Matplotlib</li>
+            <li><strong>CLI:</strong> Typer</li>
         </ul>
 
         <a class="back-link" href="./projects.html">← Back to All Projects</a>
@@ -92,3 +110,4 @@
 
 </body>
 </html>
+
