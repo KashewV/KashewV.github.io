@@ -4,15 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kash Vittala — Personal Site</title>
-  <meta name="description" content="Kash Vittala — strategy, tech, and curious projects. Portfolio, notes, and ways to get in touch." />
+  <meta name="description" content="Kash Vittala — strategy, tech, and curious projects." />
   <meta name="theme-color" content="#0f172a" />
 
+  <!-- SEO / Open Graph -->
   <meta property="og:title" content="Kash Vittala — Personal Site" />
   <meta property="og:description" content="Strategy ✕ Tech. Projects, writing." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="/og-image.png" />
   <meta property="og:url" content="https://kashewv.github.io" />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -24,7 +26,6 @@
       --muted: #a3a3a3; /* zinc-400 */
       --card: #0f172a; /* slate-900 */
       --accent: #60a5fa; /* sky-400 */
-      --ring: rgba(96, 165, 250, 0.4);
       --shadow: 0 10px 30px rgba(0,0,0,.4);
     }
     @media (prefers-color-scheme: light) {
@@ -34,11 +35,10 @@
         --muted: #475569;
         --card: #ffffff;
         --accent: #2563eb;
-        --ring: rgba(37, 99, 235, 0.2);
         --shadow: 0 10px 30px rgba(0,0,0,.08);
       }
     }
-    html, body { height: 100%; }
+    html, body { min-height: 100%; }
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -48,6 +48,8 @@
                   var(--bg);
       color: var(--text);
       line-height: 1.6;
+      display: flex;
+      flex-direction: column;
     }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
@@ -62,22 +64,9 @@
     }
     .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
     .brand { font-weight: 800; letter-spacing: .4px; }
-    .nav-links { display: flex; gap: 20px; align-items: center; }
-    .nav-links a { color: var(--text); opacity: .85; }
-    .nav-links a:hover { opacity: 1; }
-    .nav-cta { padding: 8px 14px; border-radius: 999px; background: var(--text); color: var(--bg); font-weight: 600; }
-
-    /* Mobile nav */
-    .nav-toggle { display: none; }
-    @media (max-width: 760px) {
-      .nav-links { display: none; }
-      .nav-toggle { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid color-mix(in oklab, var(--text) 15%, transparent); border-radius: 10px; background: color-mix(in oklab, var(--card) 88%, transparent); color: var(--text); }
-      .mobile-menu { display: none; position: absolute; inset: auto 0 0 0; top: 58px; background: var(--card); padding: 10px; border-bottom: 1px solid color-mix(in oklab, var(--text) 10%, transparent); }
-      .mobile-menu a { display: block; padding: 12px; color: var(--text); border-radius: 8px; }
-      .mobile-menu a:hover { background: color-mix(in oklab, var(--text) 8%, transparent); }
-    }
 
     /* Sections */
+    main { flex-grow: 1; display: flex; align-items: center; }
     section { padding: 80px 0; }
     .hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items: center; padding: 56px 0 40px; }
     .hero h1 { font-size: clamp(28px, 5vw, 52px); line-height: 1.05; margin: 0 0 16px; letter-spacing: -0.02em; }
@@ -88,23 +77,12 @@
     .btn.primary { background: var(--accent); color: white; border-color: transparent; }
     .kicker { display: inline-block; font-size: 12px; text-transform: uppercase; letter-spacing: .18em; color: var(--muted); border: 1px solid color-mix(in oklab, var(--text) 15%, transparent); padding: 6px 10px; border-radius: 999px; margin-bottom: 14px; }
 
-    .grid { display: grid; gap: 18px; grid-template-columns: repeat(12, 1fr); }
-    .card { grid-column: span 4; background: linear-gradient(180deg, color-mix(in oklab, var(--card) 94%, transparent), color-mix(in oklab, var(--card) 98%, transparent)); border: 1px solid color-mix(in oklab, var(--text) 12%, transparent); padding: 18px; border-radius: 16px; transition: transform .2s ease, border-color .2s ease; }
-    .card:hover { transform: translateY(-2px); border-color: color-mix(in oklab, var(--accent) 60%, transparent); }
-    .card .tag { font-size: 12px; color: var(--muted); }
-    .card h3 { margin: 8px 0 4px; font-size: 18px; }
-    .card p { margin: 0; color: var(--muted); }
-    @media (max-width: 980px) { .card { grid-column: span 6; } }
-    @media (max-width: 640px) { .hero { grid-template-columns: 1fr; } .card { grid-column: span 12; } }
+    @media (max-width: 640px) { .hero { grid-template-columns: 1fr; } }
 
-    .section-title { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; }
-    .section-title h2 { margin: 0; font-size: 22px; letter-spacing: -.01em; }
-    .section-title a { font-size: 14px; }
 
     /* Footer */
     footer { padding: 36px 0 60px; color: var(--muted); }
     .foot { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; border-top: 1px solid color-mix(in oklab, var(--text) 12%, transparent); padding-top: 20px; }
-    .social { display: flex; gap: 14px; }
 
     /* Small motion */
     .reveal { opacity: 0; transform: translateY(10px); animation: reveal .7s ease forwards; }
@@ -112,26 +90,12 @@
     .reveal-3 { animation-delay: .2s; }
     .reveal-4 { animation-delay: .3s; }
     @keyframes reveal { to { opacity: 1; transform: none; } }
-
-    /* Utility */
-    .hidden { display: none; }
   </style>
 </head>
 <body>
   <header>
     <div class="container nav">
       <div class="brand">Kash Vittala</div>
-      <nav class="nav-links" aria-label="Primary">
-        <a href="/#projects">Projects</a>
-        <a href="/#writing">Writing</a>
-        <a href="/#about">About</a>
-      </nav>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" id="navToggle">Menu ▾</button>
-    </div>
-    <div class="mobile-menu container" id="mobile-menu" role="dialog" aria-label="Mobile Navigation">
-      <a href="#projects" onclick="closeMenu()">Projects</a>
-      <a href="#writing" onclick="closeMenu()">Writing</a>
-      <a href="#about" onclick="closeMenu()">About</a>
     </div>
   </header>
 
@@ -140,10 +104,10 @@
       <div>
         <span class="kicker reveal">Strategy ✕ Tech</span>
         <h1 class="reveal-2"> Go and Set the World on Fire </h1>
-        <p class="reveal-3">Undergrad @ Georgetown (OPAN & GBF). Interests in consulting, product, and policy. Currently exploring FX simulations! 
+        <p class="reveal-3">Undergrad @ Georgetown (OPAN & GBF). Interests in consulting, product, and policy. Currently exploring FX simulations!
         </p>
         <div class="btn-row reveal-4">
-          <a class="btn primary" href="#projects">See projects</a>
+          <a href="pages/projects.html" class="btn primary">View Projects</a>
         </div>
       </div>
       <div class="hero-card reveal-3" aria-label="Now">
@@ -155,58 +119,6 @@
         </ul>
       </div>
     </section>
-
-    <section id="projects" class="container">
-      <div class="section-title">
-        <h2>Featured Projects</h2>
-        <a href="projects.html">All projects →</a>
-      </div>
-      <div class="grid">
-        <article class="card reveal">
-          <div class="tag">Simulation • Finance</div>
-          <h3>Monte Carlo FX Risk</h3>
-          <p>Correlated currency paths, VaR/ETL, and scenario analysis. <em>Demo & write‑up coming soon.</em></p>
-        </article>
-            </div>
-    </section>
-
-    <section id="writing" class="container">
-      <div class="section-title">
-        <h2>Writing</h2>
-        <a href="https://kashewv.substack.com/">All posts →</a>
-      </div>
-      <div class="grid">
-        <article class="card reveal">
-          <div class="tag">Essay</div>
-          <h3>Essay1</h3>
-          <p>Essay1 writing </p>
-        </article>
-        <article class="card reveal reveal-2">
-          <div class="tag">Explainer</div>
-          <h3>FX Hedging: A Friendly Primer</h3>
-          <p>Forwards, options, and mitigation in plain English.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="about" class="container">
-      <div class="grid">
-        <div class="card reveal" style="grid-column: span 7;">
-          <h3>Hi, I’m Kash.</h3>
-          <p>I love learning everything and anything. I'm most interested in the intersection of fields and uncertainty. I’ve worked across research and ops, and I’m happiest when I’m building something useful and writing it up clearly.</p>
-        </div>
-        <div class="card reveal reveal-2" style="grid-column: span 5;">
-          <h3>Quick Stats</h3>
-          <ul style="margin:0; padding-left:18px; color:var(--muted)">
-            <li>Georgetown MSB — Operations Analytics </li>
-            <li>Frmr CSIS Policy Fellow • Former trade intern</li>
-            <li>Enjoys F1 and building a zettelkasten</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-   
   </main>
 
   <footer>
@@ -222,20 +134,6 @@
     // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Mobile menu
-    const navToggle = document.getElementById('navToggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    function closeMenu(){
-      mobileMenu.style.display = 'none';
-      navToggle.setAttribute('aria-expanded', 'false');
-    }
-    navToggle?.addEventListener('click', () => {
-      const open = mobileMenu.style.display === 'block';
-      mobileMenu.style.display = open ? 'none' : 'block';
-      navToggle.setAttribute('aria-expanded', String(!open));
-    });
-    window.closeMenu = closeMenu;
-
     // Theme toggle (persist with localStorage)
     const themeBtn = document.getElementById('themeBtn');
     const STORAGE_KEY = 'kv-theme';
@@ -248,7 +146,6 @@
         root.style.setProperty('--muted', '#475569');
         root.style.setProperty('--card', '#ffffff');
         root.style.setProperty('--accent', '#2563eb');
-        root.style.setProperty('--ring', 'rgba(37, 99, 235, 0.2)');
         root.style.setProperty('--shadow', '0 10px 30px rgba(0,0,0,.08)');
       } else {
         root.style.setProperty('--bg', '#0b1020');
@@ -256,7 +153,6 @@
         root.style.setProperty('--muted', '#a3a3a3');
         root.style.setProperty('--card', '#0f172a');
         root.style.setProperty('--accent', '#60a5fa');
-        root.style.setProperty('--ring', 'rgba(96, 165, 250, 0.4)');
         root.style.setProperty('--shadow', '0 10px 30px rgba(0,0,0,.4)');
       }
       localStorage.setItem(STORAGE_KEY, mode);
@@ -274,3 +170,4 @@
   </script>
 </body>
 </html>
+
